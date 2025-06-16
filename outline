@@ -1,0 +1,12 @@
+- Introduction
+- Gaussian Processes
+	- Intuition (generating infinite functions, confidence interval)
+	- Mathematical Basics (very briefly touching on kernel)
+	- Different modelling workflow (dataset size, prior knowledge, other limitations or benefits)
+- Combining both models
+	- What we hope to achieve? 
+	- Architecture to achieve this? 
+		- idea
+		- how backpropagation is done? 
+		- ... 
+	- Specific tests and findings
