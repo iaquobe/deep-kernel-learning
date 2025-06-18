@@ -46,8 +46,7 @@ With this infinite amount of functions, we can generate a confidence interval.
 
 Obviously generating an infinite amount of functions is not feasible,
 so thankfully, there is some nice math that allows us to calculate 
-the confidence interval analytically,
-without needing to generate an infinite amount of functions. 
+the confidence interval analytically.
 
 ## Math 
 
@@ -137,14 +136,17 @@ In contrast, GPRs need a kernel which is guided by prior knowledge.
 Unlike NNs, GPRs can also predict uncertainty. 
 However, they are computationally heavy and work best with low dimensionality. 
 
-The Idea of the paper is to combine both methods, to get the best of both worlds. 
-What they propose is to use a NN, which transforms the data into a latent representation. 
-This latent representation is then feed to the GPR. 
-The idea is that the NN is not only able to reduce dimensionality, 
-but also to make the choice of the best kernel less crucial. 
-The idea is that when choosing a bad kernel for the domain, 
-using a NN beforehand would enable the input to be transformed 
-so that the chosen kernel is not a bad fit anymore. 
+<!-- The Idea of the paper is to combine both methods, to get the best of both worlds.  -->
+<!-- What they propose is to use a NN, which transforms the data into a latent representation.  -->
+<!-- This latent representation is then feed to the GPR.  -->
+<!-- The idea is that the NN is not only able to reduce dimensionality,  -->
+<!-- but also to make the choice of the best kernel less crucial.  -->
+<!-- The idea is that when choosing a bad kernel for the domain,  -->
+<!-- using a NN beforehand would enable the input to be transformed  -->
+<!-- so that the chosen kernel is not a bad fit anymore.  -->
 
 
 
+<!-- https://zlthinker.github.io/gaussian-process-regression -->
+<!-- https://www.streambatch.io/knowledge/ndvi-from-sentinel-2-imagery-using-stac -->
+<!-- https://gonintendo.com/stories/334105-nintendo-details-switch-sales-pace-compares-to-wii-ds-era-break -->
