@@ -81,6 +81,8 @@ we can specify the relationship between the variables in the multivariate distri
 We do this with what is called a covariance matrix, or kernel how it is often called in GPRs. 
 With this we can encode different patterns. 
 
+<!-- https://en.wikipedia.org/wiki/Covariance_matrix -->
+
 There are kernels which can model periodic patterns,
 kernels which can model linear patterns, 
 smoothed out patterns, 
@@ -110,26 +112,25 @@ One nice thing about those multivariate distributions,
 is that we don't need to sample.
 It's possible to analytically compute the mean function and the confidence 
 interval resulting from a kernel and a few data-points to fit it to. 
-
-
-
+But here you just need to believe me, because this wouldn't fit into my 7 minutes.
 
 
 ## Why contrarian? 
 
-So why were long considered as opposite?
+Earlier I mentioned that they were long considered as contrarian, but why?
 Well first because it represents uncertainty,
 but also because they are non-parametric.
 What that means, is that neural networks learn to model the data,
 by adjusting millions of parameters, so that some error function is minimized.
 GPRs in contrast don't adjust parameters, they take in the data, 
 and some kernel function which limits the functions and analytically 
-calculate the mean and confidence intervals. 
+calculates the mean and confidence intervals. 
 
 This creates some fundamental differences in how a model is created. 
 For neural networks, no prior knowledge on the domain 
 is needed to guide the structure of the network. 
-NNs are much more flexible in the kinds of functions they can model. 
+Or at least, not as much prior knowledge as gprs need.
+that is because NNs are much more flexible in the kinds of functions they can model. 
 For instance in previous example of ecosystems and or Nintendo sales data, 
 you could use the same structure. 
 In contrast, GPRs need a kernel which is guided by prior knowledge. 
