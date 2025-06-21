@@ -27,9 +27,9 @@ There is a mean function,
 and a shaded area which shows the confidence interval. 
 
 
-\begin{center}
-\includegraphics[width=0.8\textwidth]{./images/gpr.png}
-\end{center}
+<!-- \begin{center} -->
+<!-- \includegraphics[width=0.8\textwidth]{./images/gpr.png} -->
+<!-- \end{center} -->
 <!-- https://medium.com/analytics-vidhya/interpreting-posterior-of-gaussian-process-for-regression-1bcfaab8e8aa -->
 
 You can also see the data-points, and what is interesting to see,
@@ -42,77 +42,85 @@ We're given a set of data points at which we know the value of the function.
 And we are given a distribution of functions which we call prior. 
 We then generate an infinite amount of functions from this distribution,
 which pass through those points. This is called the posterior. 
-With this infinite amount of functions, we can generate a confidence interval. 
+From this posterior, we can generate a confidence interval. 
 
 Obviously generating an infinite amount of functions is not feasible,
-so thankfully, there is some nice math that allows us to calculate 
-the confidence interval analytically.
+so thankfully, there is some nice math that allows us to calculate it analytically.
 
 ## Math 
 
 Let's quickly take a look at the math that makes this possible. 
 When I am talking about generating functions this might be misleading, 
 because I am not talking about functions like x^3 or 2x -1. 
-What I actually mean with a function is sampled points at regular intervals, 
+What I mean with function is a set of sampled points at regular intervals. 
 like this: 
-\begin{center}
-\includegraphics[width=0.8\textwidth]{./images/multivariate-samples.png}
-\captionof{figure}{sampled functions}
-\end{center}
+<!-- \begin{center} -->
+<!-- \includegraphics[width=0.8\textwidth]{./images/multivariate-samples.png} -->
+<!-- \captionof{figure}{sampled functions} -->
+<!-- \end{center} -->
 <!-- source: intuitive tutorial gpr -->
 
-Note that we don't sample independent variables, because this would look like this;
-and we want similar inputs to have similar output
-\begin{center}
-\includegraphics[width=0.8\textwidth]{./images/independent-samples.png}
-\captionof{figure}{independent samples}
-\end{center}
+<!-- Note that we don't sample independent variables, because this would look like this; -->
+<!-- and we want similar inputs to have similar output -->
+<!-- \begin{center} -->
+<!-- \includegraphics[width=0.8\textwidth]{./images/independent-samples.png} -->
+<!-- \captionof{figure}{independent samples} -->
+<!-- \end{center} -->
 <!-- source: intuitive tutorial gpr -->
 
 Another thing to note is that similar input might mean different things in different scenarios. 
 For instance when modeling ecosystems, 
 you might expect the first of June in 2017, and 2018 to be very similar. 
-On the other hand, when modeling the cumulative Nintendo Switch sales, 
-which released in March 2017,
+On the other hand, when modeling the cumulative sales, 
 you would expect June 2017 and 2018 to be very different. 
 
-So what we do to ensure that the similar inputs have similar outputs, 
-we can specify the relationship between the variables in the multivariate distribution. 
-We do this with what is called a covariance matrix, or kernel how it is often called in GPRs. 
-With this we can encode different patterns. 
+So to ensure that similar inputs have similar outputs we specify 
+the relationship between variables with a multivariate distribution.
+We do this with what is called a covariance matrix. 
+As a quick background, you can see a multivariate distribution here with two variables. 
+This distribution can be entirely described with the covariance matrix on the left. 
+Since the functions are sampled from a multivariate distribution, 
+we can change the covariance matrix, to change the types of functions we generate. 
+With it we can create different patterns. 
 
 <!-- https://en.wikipedia.org/wiki/Covariance_matrix -->
 
+Let me quickly introduce the term kernel functions. 
+Those functions are used to create the covariance matrix. 
+There is some important distinction between the two when it comes to implementation, 
+but for now just think of covariance matrix and kernel function as interchangable. 
+
+With different kernels it is possible to model different types of patterns
+for instance: 
 There are kernels which can model periodic patterns,
-kernels which can model linear patterns, 
-smoothed out patterns, 
-and much more. It is also possible to combine two kernels for instance to have 
+smoothed out patterns, linear patterns, and much more. 
+It is also possible to combine two kernels. For instance to have 
 a periodic function with a linear trend. 
 
-\begin{center}
-\includegraphics[width=0.8\textwidth]{./images/periodic-kernel.png}
-\captionof{figure}{periodic kernel}
-\end{center}
+<!-- \begin{center} -->
+<!-- \includegraphics[width=0.8\textwidth]{./images/periodic-kernel.png} -->
+<!-- \captionof{figure}{periodic kernel} -->
+<!-- \end{center} -->
+<!-- source: distill pub -->
+<!---->
+<!-- \begin{center} -->
+<!-- \includegraphics[width=0.8\textwidth]{./images/linear-kernel.png} -->
+<!-- \captionof{figure}{linear kernel} -->
+<!-- \end{center} -->
 <!-- source: distill pub -->
 
-\begin{center}
-\includegraphics[width=0.8\textwidth]{./images/linear-kernel.png}
-\captionof{figure}{linear kernel}
-\end{center}
-<!-- source: distill pub -->
-
-\begin{center}
-\includegraphics[width=0.8\textwidth]{./images/rbf-kernel.png}
-\captionof{figure}{rbf kernel}
-\end{center}
+<!-- \begin{center} -->
+<!-- \includegraphics[width=0.8\textwidth]{./images/rbf-kernel.png} -->
+<!-- \captionof{figure}{rbf kernel} -->
+<!-- \end{center} -->
 <!-- source: distill pub -->
 
 
 One nice thing about those multivariate distributions,
-is that we don't need to sample.
-It's possible to analytically compute the mean function and the confidence 
-interval resulting from a kernel and a few data-points to fit it to. 
-But here you just need to believe me, because this wouldn't fit into my 7 minutes.
+is that we don't need to sample from them.
+It's possible to calculate the mean and confidence 
+interval just with the kernel and a few data points.
+But here you just need to believe me, because Im running out of time. 
 
 
 ## Why contrarian? 
@@ -151,3 +159,8 @@ However, they are computationally heavy and work best with low dimensionality.
 <!-- https://zlthinker.github.io/gaussian-process-regression -->
 <!-- https://www.streambatch.io/knowledge/ndvi-from-sentinel-2-imagery-using-stac -->
 <!-- https://gonintendo.com/stories/334105-nintendo-details-switch-sales-pace-compares-to-wii-ds-era-break -->
+<!-- https://medium.com/analytics-vidhya/interpreting-posterior-of-gaussian-process-for-regression-1bcfaab8e8aa -->
+<!-- https://en.wikipedia.org/wiki/Covariance_matrix -->
+<!-- source: distill pub -->
+<!-- source: intuitive tutorial gpr -->
+<!-- https://medium.com/analytics-vidhya/interpreting-posterior-of-gaussian-process-for-regression-1bcfaab8e8aa -->
